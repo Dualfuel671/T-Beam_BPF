@@ -127,7 +127,7 @@ void drawGPSPage()
     }
 
     if (gps.altitude.isValid())
-        snprintf(buf, sizeof(buf), "Alt: %.0fm", gps.altitude.meters());
+        snprintf(buf, sizeof(buf), "Alt: %.0fft", gps.altitude.meters() * 3.28084f);
     else
         snprintf(buf, sizeof(buf), "Alt: ---");
     u8g2->drawStr(0, 42, buf);
