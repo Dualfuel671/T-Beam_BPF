@@ -10,4 +10,4 @@ test
 script
 build
 LilyGoLoRaBoard
-record.*
+record.*.github/
