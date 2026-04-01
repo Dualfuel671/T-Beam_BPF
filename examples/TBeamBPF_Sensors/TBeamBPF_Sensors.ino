@@ -85,26 +85,28 @@ void drawBMEPage()
     char buf[32];
 
     u8g2->setFont(u8g2_font_6x10_tf);
-    u8g2->drawStr(0, 10, bmeOnline ? "=== BME680 ===" : "=== BME680 (offline) ===");
 
     if (bmeOnline) {
         snprintf(buf, sizeof(buf), "Temp : %.1f F", bmeTemp);
-        u8g2->drawStr(0, 22, buf);
+        u8g2->drawStr(0, 10, buf);
 
         snprintf(buf, sizeof(buf), "Humid: %.1f %%", bmeHumid);
-        u8g2->drawStr(0, 32, buf);
+        u8g2->drawStr(0, 20, buf);
 
         snprintf(buf, sizeof(buf), "Press: %.2f inHg", bmePressure);
-        u8g2->drawStr(0, 42, buf);
+        u8g2->drawStr(0, 30, buf);
+
+        snprintf(buf, sizeof(buf), "       %.4f PSI", bmePressure * 0.491154f);
+        u8g2->drawStr(0, 40, buf);
 
         snprintf(buf, sizeof(buf), "Gas  : %.1f kOhm", bmeGas);
-        u8g2->drawStr(0, 52, buf);
+        u8g2->drawStr(0, 50, buf);
 
         // Heat-stability indicator (higher gas resistance = cleaner air)
-        u8g2->drawStr(0, 62, bmeGas > 50 ? "Air: OK" : "Air: Poor");
+        u8g2->drawStr(0, 60, bmeGas > 50 ? "Air: OK" : "Air: Poor");
     } else {
-        u8g2->drawStr(0, 32, "Sensor not found");
-        u8g2->drawStr(0, 44, "Check Qwiic cable");
+        u8g2->drawStr(0, 20, "BME680 not found");
+        u8g2->drawStr(0, 32, "Check Qwiic cable");
     }
 }
 
